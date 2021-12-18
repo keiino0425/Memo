@@ -9,9 +9,11 @@ def write
   puts "メモしたい内容を記入してください"
   puts "完了したら ctrl + Dを押します"
   
+  
   # textに記入されたメモを保存する
   CSV.open(title + ".csv","w") do |text|
-    text << [readlines]
+    content = readlines.map(&:chomp)
+    text << content
   end
 end
 
@@ -31,7 +33,8 @@ def read
   
   # textに記入されたメモを追記する
   CSV.open(title + ".csv","a") do |text|
-    text << [readlines]
+    content = readlines.map(&:chomp)
+    text << content
   end
 end
   
